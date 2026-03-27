@@ -45,7 +45,12 @@ else{
 const playerX=Player('X',true);
 const playerO=Player('O',false);
 document.addEventListener('click',(e)=>{
-
+if(playerO.checkResult()){
+  return;
+}
+if(playerX.checkResult()){
+  return
+}
   if(e.target.tagName ==='BUTTON'){
     console.log('hello');
    if(playerX.getTurn()){
