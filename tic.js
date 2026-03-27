@@ -46,6 +46,9 @@ else{
 const playerX=Player('X',true);
 const playerO=Player('O',false);
 document.addEventListener('click',(e)=>{
+  if(winner.innerText=='tie'){
+    return
+  }
 if(playerO.checkResult()){
   return;
 }
@@ -68,6 +71,9 @@ if(playerX.checkResult()){
      else{
       if(numOfFilledbtns()===9){
  winner.textContent='tie';
+ //a problem occurs where when it's a tie the text content could be modified
+ //i could do a for loop and prevent the event from each button but i have a better idea which is to count on the inside of the winner tag so if i wanted to restart the game i can just delete the content of each button and reassign the results and have a fresh ganme
+
  return;
       }
      }
