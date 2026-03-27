@@ -1,0 +1,21 @@
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+ justify-content: center;
+ align-items: center;
+width: 100%;
+
+}
+button {
+  min-width: 120px;   /* empty buttons stay wide */
+  height: 40px;
+  padding: 0 10px;    /* spacing for text */
+  text-align: center;
+}
