@@ -1,4 +1,5 @@
 const winner=document.querySelector('.winner');
+const buttons=document.querySelectorAll('.box');
 function Player(move,turn){
   let playerMove=move;
   let playerTurn=turn;
@@ -64,12 +65,18 @@ if(playerX.checkResult()){
      if(playerX.checkResult()){
       winner.textContent='player x wins';
      }
+     else{
+      if(numOfFilledbtns()===9){
+ winner.textContent='tie';
+ return;
+      }
+     }
      
      playerX.changeTurn();
      playerO.changeTurn();
    }
    else if(playerO.getTurn){
-    // to not change the value if it alredy has one
+    // to not change the value if it already has one
      if(e.target.textContent){
       e.stopImmediatePropagation();
       return
@@ -81,9 +88,24 @@ if(playerX.checkResult()){
      if(playerO.checkResult()){
       winner.textContent='player O wins';
      }
+      else{
+      if(numOfFilledbtns()===9){
+ winner.textContent='tie';
+ return;
+      }
+     }
      playerO.changeTurn();
      playerX.changeTurn();
 
    }
   }
 })
+function numOfFilledbtns(){//counting the number of filled boxes so that if no result appears i show a tie as there is no room left
+  let result=0;
+  buttons.forEach((btn)=>{
+if(btn.textContent){
+  result++;
+}
+ })
+ return result ;
+}
