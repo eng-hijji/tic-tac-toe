@@ -1,9 +1,11 @@
 const winner=document.querySelector('.winner');
 const buttons=document.querySelectorAll('.box');
+const container=document.querySelector('.container');
+const restart=document.querySelector('.rebtn');
 function Player(move,turn){
   let playerMove=move;
   let playerTurn=turn;
-  const results=[[false,false,false],[false,false,false],[false,false,false]]
+  let results=[[false,false,false],[false,false,false],[false,false,false]]
  const changeTurn=()=>{playerTurn=!playerTurn}
  const getTurn=()=>{return playerTurn};
  const updateResult=(row,column)=>{results[row-1][column-1]=true};
@@ -37,15 +39,18 @@ else{
 }
 
  }
+ let reResult=()=>{
+  results=[[false,false,false],[false,false,false],[false,false,false]];
+ }
 
 
 
-  return{playerMove,changeTurn,getTurn,updateResult,checkResult};
+  return{playerMove,changeTurn,getTurn,updateResult,checkResult,reResult};
 
 }
 const playerX=Player('X',true);
 const playerO=Player('O',false);
-document.addEventListener('click',(e)=>{
+container.addEventListener('click',(e)=>{
   if(winner.innerText=='tie'){
     return
   }
@@ -115,3 +120,12 @@ if(btn.textContent){
  })
  return result ;
 }
+restart.addEventListener('click',()=>{
+  buttons.forEach((btn)=>{
+    btn.textContent="";
+
+  })
+  winner.innerText='winner'
+playerX.reResult();
+playerO.reResult();
+})
