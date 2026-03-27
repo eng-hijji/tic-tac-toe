@@ -1,3 +1,4 @@
+const winner=document.querySelector('.winner');
 function Player(move,turn){
   let playerMove=move;
   let playerTurn=turn;
@@ -48,20 +49,36 @@ document.addEventListener('click',(e)=>{
   if(e.target.tagName ==='BUTTON'){
     console.log('hello');
    if(playerX.getTurn()){
+    if(e.target.textContent){
+      e.stopImmediatePropagation();
+    }
      e.target.textContent='X';
+     const column=parseInt(e.target.dataset.column);
+     const row =parseInt(e.target.dataset.row);
+     playerX.updateResult(row,column);
+     if(playerX.checkResult()){
+      winner.textContent='player x wins';
+     }
+     
      playerX.changeTurn();
      playerO.changeTurn();
    }
    else if(playerO.getTurn){
+    // to not change the value if it alredy has one
+     if(e.target.textContent){
+      e.stopImmediatePropagation();
+      return
+    }
      e.target.textContent='O';
+      const column=parseInt(e.target.dataset.column);
+     const row =parseInt(e.target.dataset.row);
+     playerO.updateResult(row,column);
+     if(playerO.checkResult()){
+      winner.textContent='player O wins';
+     }
      playerO.changeTurn();
      playerX.changeTurn();
 
    }
   }
 })
-playerX.updateResult(1,1);
-playerX.updateResult(1,2);
-playerX.updateResult(2,2);
-playerX.updateResult(3,3);
-console.log(playerX.checkResult())
